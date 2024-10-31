@@ -9,7 +9,7 @@
 \author{Nandanavanam VS Sai Saketh}
 
 
-\affil{Department of Mathematics, IIT (BHU), Varanasi}
+\affil{Department of Mathematical Science, IIT (BHU), Varanasi}
 \affil{\texttt{mate.shubhamvijay.mat23@itbhu.ac.in, nvssai.saketh.mat23@itbhu.ac.in}}
 
 \date{November 2024}
@@ -18,9 +18,10 @@
 	
 	\maketitle
 	\section{Objective}
-		To predict the Remaining Useful Life (RUL) of a battery by giving 20 observations which consists of the various features of the batteries using a neural ODE without using the capacity (mAH) feature which is used in traditional methods. The model was to be trained on the given dataset.
+		
+		\small{To predict the Remaining Useful Life (RUL) of a battery by giving 20 observations which consists of the various features of the batteries using a neural ODE without using the capacity (mAH) feature which is used in traditional methods. The model was to be trained on the given dataset.}
 		\subsection{Dataset}
-			The dataset to be used is the Battery Remaining Useful Life Prediction dataset on Kaggle. The Hawaii Natural Energy Institute examined 14 NMC-LCO 18650 batteries with a nominal capacity of 2.8 Ah, which were cycled over 1000 times at 25°C with a CC-CV charge rate of C/2 rate and discharge rate of 1.5C. This data released by Hawaii Natural Energy Institute was used to make this dataset. It contains the following features:
+			\small{The dataset to be used is the Battery Remaining Useful Life Prediction dataset on Kaggle. The Hawaii Natural Energy Institute examined 14 NMC-LCO 18650 batteries with a nominal capacity of 2.8 Ah, which were cycled over 1000 times at 25°C with a CC-CV charge rate of C/2 rate and discharge rate of 1.5C. This data released by Hawaii Natural Energy Institute was used to make this dataset. It contains the following features:
 			\begin{description}
 				\item[Cycle Index] The Cycle number of current cycle
 				\item[Discharge Time (s)] time that takes the voltage to reach its minimum value in one discharge cycle.
@@ -31,11 +32,11 @@
 				\item[Time constant current (s)] The time in which the current stays constant at its max. value.
 				\item[Charging time (s)] The total time for charging.
 				\item[RUL] The Remaining Useful Life of battery after every cycle.
-			\end{description}
-	\section{Mathematical Formulation and Explaination}
-		In this section, we'll look at and recap the mathematical formulation of the various techniques and components used in the model
+			\end{description}}
+	\section{\large{Mathematical Formulation and Explaination}}
+		\small{In this section, we'll look at and recap the mathematical formulation of the various techniques and components used in the model}
 		\subsection{Neural ODE}
-			Numerous Models build complicated transformations by composing a sequence of
+			\small{Numerous Models build complicated transformations by composing a sequence of
 			transformations to the input or a maintained hidden state. These transformations are mathematically expressed as:
 			\begin{equation*}
 				\mathbf{z}_{t+1} = \mathbf{z}_{t} + f(\mathbf{z}_{t}, \theta_{t})
@@ -53,6 +54,45 @@
 			\begin{equation*}
 				\frac{d\mathbf{a}(t)}{dt} = -\mathbf{a}(t)^T \frac{\partial \mathbf{f}(\mathbf{z}(t), t; \mathbf{\theta})}{\partial \mathbf{z}(t)}
 			\end{equation*}
+			Another ODE solver is used to solve the dynamics of $\mathbf{a}(t)$.
+			The Gradient $\frac{d\mathbf{L}}{d\theta}$ is finally computed by the equation:
+			\begin{equation*}
+				\frac{d\mathcal{L}}{d\mathbf{\theta}} = \int_0^T \mathbf{a}(t)^T \frac{\partial \mathbf{f}(\mathbf{z}(t), t; \mathbf{\theta})}{\partial \mathbf{\theta}} dt
+			\end{equation*}
+			We use Neural ODEs to model the dynamics of the hidden state of a RNN.}
+		\subsection{Neural ODE based GRU}
+			\footnotesize{RNN (Recurrent Neural Network) is a type of neural network which maintains a hidden state $\mathbf{h}_t$ which gets updated each time a new input is fed into it. This allows it to remember information from previous inputs. This makes them suitable to model sequential/time-series data in which current input may be dependant on previous inputs.
+			\\
+			GRU (Gated Recurrent Unit) is a variation of RNNs where each unit has an update gate ($z_t$) and reset gate ($r_t$) which allows them to select what information should be maintained by hidden states and what information should be forgotten. The equations for the GRU are:
+			\begin{equation}
+				z_t = \sigma(\mathbf{W}_z \mathbf{x}_t + \mathbf{U}_z \mathbf{h}_{t-1} + \mathbf{b}_z)
+			\end{equation}
+			\begin{equation}
+				r_t = \sigma(\mathbf{W}_r \mathbf{x}_t + \mathbf{U}_r \mathbf{h}_{t-1} + \mathbf{b}_r)
+			\end{equation}
+			\begin{equation}
+				\tilde{\mathbf{h}}_t = \tanh(\mathbf{W}_h \mathbf{x}_t + \mathbf{U}_h (r_t \odot \mathbf{h}_{t-1}) + \mathbf{b}_h)
+			\end{equation}
+			\begin{equation}
+				\mathbf{h}_t = (1 - z_t) \odot \mathbf{h}_{t-1} + z_t \odot \tilde{\mathbf{h}}_t
+			\end{equation}
+			To incorporate a Neural ODE to update the hidden state, we give the following method:
+			\\
+			Suppose we have two inputs $\mathbf{x}_{t_1}$ and $\mathbf{x}_{t_2}$. Let us define a function UpdateGRU($\mathbf{x}$, $\mathbf{h}_t$) which takes an input and current hidden state and updates the states according to the equations given above. We also define a function $f$ (a neural network) with parameters $\theta$
+			\\
+			We use the following method to get the output:
+			\begin{equation*}
+				\mathbf{h}_{t_1} = \mathbf{UpdateGRU}(\mathbf{x}_{t_1}, \mathbf{h}_{t_0})
+			\end{equation*}
+			\begin{equation*}
+				\mathbf{h}_{t_1} = \mathbf{ODESolve}(\mathbf{h}_{t_1}, f, t_1, t_2, \theta)
+			\end{equation*}
+			\begin{equation*}
+				\mathbf{h}_{t_2} = \mathbf{UpdateGRU}(\mathbf{x}_{t_2}, \mathbf{h}_{t_1})
+			\end{equation*}
+			This helps us model the continuous dynamics of the hidden state of GRU in between the updates, which can help us even model time series data with irregular time interval.}
+			
+			
 	
 
 \end{document}

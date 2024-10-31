@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.30)  30 OCT 2024 19:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.10.30)  1 NOV 2024 00:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -145,13 +145,13 @@ LaTeX Font Info:    ... okay on input line 17.
  [1
 
 {C:/Users/Shubham Mate/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 41.
 
 
 (C:\Users\Shubham Mate\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 41.
 
 
 (C:\Users\Shubham Mate\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -163,30 +163,38 @@ L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 1791 strings out of 474486
- 25899 string characters out of 5740414
- 1930542 words of memory out of 5000000
- 24105 multiletter control sequences out of 15000+600000
- 565965 words of font info for 65 fonts, out of 8000000 for 9000
+ 1809 strings out of 474486
+ 26184 string characters out of 5740414
+ 1932542 words of memory out of 5000000
+ 24119 multiletter control sequences out of 15000+600000
+ 568897 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,6n,65p,462b,263s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 56i,6n,65p,469b,263s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\Shubham Mate\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi6
-00\tcrm1200.pk><C:/Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1
-/public/amsfonts/cm/cmbx12.pfb><C:/Users/Shubham Mate/AppData/Local/Programs/Mi
-KTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/Shubham Mate/AppData/L
-ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/Shubha
-m Mate/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><
+00\tcrm1095.pk><C:/Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmbx10.pfb><C:/Users/Shubham Mate/AppData/Local/Programs/Mi
+KTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/Shubham Mate/AppData/L
+ocal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/Shubham
+ Mate/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><
 C:/Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts
-/cm/cmr12.pfb><C:/Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1/
-public/amsfonts/cm/cmr6.pfb><C:/Users/Shubham Mate/AppData/Local/Programs/MiKTe
-X/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Shubham Mate/AppData/Local/
-Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/Shubham Mat
-e/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt12.pfb><C:/U
-sers/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/sym
-bols/msbm10.pfb>
-Output written on Report.pdf (3 pages, 110156 bytes).
+/cm/cmmi10.pfb><C:/Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1
+/public/amsfonts/cm/cmmi7.pfb><C:/Users/Shubham Mate/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/Shubham Mate/AppData/Loc
+al/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/Shubham M
+ate/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/
+Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm
+/cmr5.pfb><C:/Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1/publ
+ic/amsfonts/cm/cmr6.pfb><C:/Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/Shubham Mate/AppData/Local/Prog
+rams/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/Shubham Mate/AppD
+ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/S
+hubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.
+pfb><C:/Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmtt12.pfb><C:/Users/Shubham Mate/AppData/Local/Programs/MiKTeX/fonts/
+type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on Report.pdf (3 pages, 192847 bytes).
 PDF statistics:
- 67 PDF objects out of 1000 (max. 8388607)
+ 102 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
