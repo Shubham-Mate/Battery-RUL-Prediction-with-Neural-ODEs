@@ -2,14 +2,17 @@
 \usepackage{authblk}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
 
-\title{\textbf{Prediction of Remaining Useful Life (RUL) of Batteries using ODE-RNNs}}
+\captionsetup{font=scriptsize}
+\title{\textbf{Prediction of Remaining Useful Life (RUL) of Batteries using Neural ODE based GRU}}
 \author{Shubham Mate}
 
 \author{Nandanavanam VS Sai Saketh}
 
 
-\affil{Department of Mathematical Science, IIT (BHU), Varanasi}
+\affil{Department of Mathematical Sciences, IIT (BHU), Varanasi}
 \affil{\texttt{mate.shubhamvijay.mat23@itbhu.ac.in, nvssai.saketh.mat23@itbhu.ac.in}}
 
 \date{November 2024}
@@ -19,9 +22,9 @@
 	\maketitle
 	\section{Objective}
 		
-		\small{To predict the Remaining Useful Life (RUL) of a battery by giving 20 observations which consists of the various features of the batteries using a neural ODE without using the capacity (mAH) feature which is used in traditional methods. The model was to be trained on the given dataset.}
+		\footnotesize{To predict the Remaining Useful Life (RUL) of a battery by giving 20 observations which consists of the various features of the batteries using a neural ODE without using the capacity (mAH) feature which is used in traditional methods. The model was to be trained on the given dataset.}
 		\subsection{Dataset}
-			\small{The dataset to be used is the Battery Remaining Useful Life Prediction dataset on Kaggle. The Hawaii Natural Energy Institute examined 14 NMC-LCO 18650 batteries with a nominal capacity of 2.8 Ah, which were cycled over 1000 times at 25°C with a CC-CV charge rate of C/2 rate and discharge rate of 1.5C. This data released by Hawaii Natural Energy Institute was used to make this dataset. It contains the following features:
+			\footnotesize{The dataset to be used is the Battery Remaining Useful Life Prediction dataset on Kaggle. The Hawaii Natural Energy Institute examined 14 NMC-LCO 18650 batteries with a nominal capacity of 2.8 Ah, which were cycled over 1000 times at 25°C with a CC-CV charge rate of C/2 rate and discharge rate of 1.5C. This data released by Hawaii Natural Energy Institute was used to make this dataset. It contains the following features:
 			\begin{description}
 				\item[Cycle Index] The Cycle number of current cycle
 				\item[Discharge Time (s)] time that takes the voltage to reach its minimum value in one discharge cycle.
@@ -33,10 +36,10 @@
 				\item[Charging time (s)] The total time for charging.
 				\item[RUL] The Remaining Useful Life of battery after every cycle.
 			\end{description}}
-	\section{\large{Mathematical Formulation and Explaination}}
-		\small{In this section, we'll look at and recap the mathematical formulation of the various techniques and components used in the model}
+	\section{Mathematical Formulation}
+		\footnotesize{In this section, we'll look at and recap the mathematical formulation of the various techniques and components used in the model}
 		\subsection{Neural ODE}
-			\small{Numerous Models build complicated transformations by composing a sequence of
+			\footnotesize{Numerous Models build complicated transformations by composing a sequence of
 			transformations to the input or a maintained hidden state. These transformations are mathematically expressed as:
 			\begin{equation*}
 				\mathbf{z}_{t+1} = \mathbf{z}_{t} + f(\mathbf{z}_{t}, \theta_{t})
@@ -59,7 +62,7 @@
 			\begin{equation*}
 				\frac{d\mathcal{L}}{d\mathbf{\theta}} = \int_0^T \mathbf{a}(t)^T \frac{\partial \mathbf{f}(\mathbf{z}(t), t; \mathbf{\theta})}{\partial \mathbf{\theta}} dt
 			\end{equation*}
-			We use Neural ODEs to model the dynamics of the hidden state of a RNN.}
+			We use Neural ODEs to model the dynamics of the hidden state of a GRU.}
 		\subsection{Neural ODE based GRU}
 			\footnotesize{RNN (Recurrent Neural Network) is a type of neural network which maintains a hidden state $\mathbf{h}_t$ which gets updated each time a new input is fed into it. This allows it to remember information from previous inputs. This makes them suitable to model sequential/time-series data in which current input may be dependant on previous inputs.
 			\\
@@ -91,6 +94,60 @@
 				\mathbf{h}_{t_2} = \mathbf{UpdateGRU}(\mathbf{x}_{t_2}, \mathbf{h}_{t_1})
 			\end{equation*}
 			This helps us model the continuous dynamics of the hidden state of GRU in between the updates, which can help us even model time series data with irregular time interval.}
+	\newpage
+	\section{Methodology}
+	\footnotesize{In this section, we'll look at various methods performed on the data to make the model.}
+		\subsection{Feature Creation}
+			\begin{figure}[h]
+				\centering
+				\begin{minipage}{0.45\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{imgs/LogChargeToTimeConstCurrentPlt.png}
+					\caption{Plot of log(Charging time (s) / Time Constant Current (s)) vs Cycle Index}
+					\label{fig:plot1}
+				\end{minipage}
+				\hfill
+				\begin{minipage}{0.45\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{imgs/ChargeToDischargePlt.png}
+					\caption{Plot of Charging time (s) / Discharge Time (s) vs Cycle Index}
+					\label{fig:plot2}
+				\end{minipage}
+			\end{figure}
+			\footnotesize{Through trial and error, we found that the ratio of Charging time to Discharging time along with the log of ratio of Charging Time to Time Constant Current showed decent correlation with the Cycle Index. Thus, we added this to our features.}
+		\subsection{Smoothing}
+			\begin{figure}[h]
+				\centering
+				\begin{minipage}{0.32\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{imgs/smoothing_1.png}
+				\end{minipage}
+				\hfill
+				\begin{minipage}{0.32\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{imgs/smoothing_2.png}
+				\end{minipage}
+				\hfill
+				\begin{minipage}{0.32\textwidth}
+					\centering
+					\includegraphics[width=\textwidth]{imgs/smoothing_3.png}
+				\end{minipage}
+				\caption{Effect of Median Smoothing on features within the sliding window}
+				\label{fig:three_plots}
+			\end{figure}
+			\footnotesize{There are many spikes within the dataset due to noise. This can affect our model's performance. So, we employed smoothing technique to remove this noise. We used Median Smoothing with a kernel size of 5 to smooth out the data within a sliding window.}
+		\subsection{Training and Evaluation}
+		The dataset contains measurement of 14 different batteries. Out of these, 10 batteries were used as training data and rest 4 were used as testing data. We used a Robust Scaler for scaling the features, as this scaler is robust to outliers which are present in the data due to noise. The RUL is standardised in the usual way i.e $z = \frac{\mathbf{x} - \mu}{\sigma}$
+		\\
+		We used a sliding window approach with size of the window set as 20 such that each data point will be $D_i = \{(x_{i-20}, \dots, x_i), (t_{i-20}, \dots, t_i), y_i\}$ where $(x_{i-20}, \dots, x_i)$ was supplied to the GRU and $(t_{i-20}, \dots, t_i)$ was used by Neural ODE to model the dynamics of the hidden state. Previously mentioned Median Smoothing is applied to each datapoint and then the data is converted into batches with Dataset and Dataloader provided by PyTorch. We also used L2 Regularization to prevent overfitting.
+		\\
+		We used a Mean Squared Error (MSE) as the loss function for our training and Root Mean Square Error (RMSE) as the evaluation metric.
+		Our method achieved an average RMSE of \textbf{52.606754} on the test dataset.
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=\textwidth]{imgs/predicted.png}
+			\caption{Predicted RUL and Actual RUL}
+		\end{figure}
 			
 			
 	
