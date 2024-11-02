@@ -141,15 +141,56 @@
 		\\
 		We used a sliding window approach with size of the window set as 20 such that each data point will be $D_i = \{(x_{i-20}, \dots, x_i), (t_{i-20}, \dots, t_i), y_i\}$ where $(x_{i-20}, \dots, x_i)$ was supplied to the GRU and $(t_{i-20}, \dots, t_i)$ was used by Neural ODE to model the dynamics of the hidden state. Previously mentioned Median Smoothing is applied to each datapoint and then the data is converted into batches with Dataset and Dataloader provided by PyTorch. We also used L2 Regularization to prevent overfitting.
 		\\
-		We used a Mean Squared Error (MSE) as the loss function for our training and Root Mean Square Error (RMSE) as the evaluation metric.
+		\footnotesize{We used a Mean Squared Error (MSE) as the loss function for our training and Root Mean Square Error (RMSE) along with other metrics as the evaluation metric.}
 		Our method achieved an average RMSE of \textbf{52.606754} on the test dataset.
+		
+		\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			Model & RMSE & MSE & MAE & R2 Score \\
+			\hline
+			Proposed Model & 52.606 & 2787.640 & 44.349 &  0.9722 \\
+			\hline
+		\end{tabular}
+		\caption{Results of Evaluation on training set}
+		\label{tab:simple_table}
+		\end{table}
+		
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=\textwidth]{imgs/predicted.png}
 			\caption{Predicted RUL and Actual RUL}
 		\end{figure}
-			
-			
-	
-
+		\newpage
+	\section{\large{Novelty and Advantages over previous methods}}
+	\begin{table}[h]
+		\centering
+		\begin{tabular}{|c|c|}
+			\hline
+			Model & RMSE \\
+			\hline
+			PSR-SVR & 191.83 \\
+			\hline
+			GRU-RNN & 127.65 \\
+			\hline
+			CNN-LSTM & 176.63 \\
+			\hline
+			\textbf{Proposed Model} & \textbf{52.606} \\
+			\hline
+		\end{tabular}
+		\caption{Comparison with other methods}
+		\label{tab:comparison}
+	\end{table}
+	Neural ODE based GRU presents a novel approach over traditional methods in discrete time involving RNNs, GRUs and LSTMs by leveraging continuous time dynamics. Some advantages of this approach are:
+	\begin{itemize}
+		\item \textbf{Flexibility with Irregularly Sampled Data:} Since Neural ODEs naturally support irregular time intervals, Neural ODE-based GRU models can effectively handle missing or irregularly spaced data points. This dataset has some data missing for certain cycle indices, which can be effectively modelled by this method
+		
+		\item \textbf{Reduced Memory Footprint and Efficient Backpropagation:} Neural ODEs use a memory-efficient adjoint sensitivity method for backpropagation, requiring only the initial and final states for gradient calculations. This drastically reduces the memory consumption during training and makes the model more scalable to larger datasets and longer sequences.
+		
+		\item \textbf{Improved Long-Term Dependency Capture:} By modeling the hidden state evolution as a continuous process, Neural ODE-based GRU can effectively capture long-term dependencies and avoid issues like vanishing gradients commonly found in traditional recurrent neural networks, which improves performance in tasks with long-range temporal dependencies.
+		
+		\item \textbf{Robust to overfitting:} Also, from our observation, modelling of the continuous time dynamics of hidden state prevents overfitting and can also act as a regularization technique.
+	\end{itemize}
+	These advantages makes this model suitable for this task.
 \end{document}
