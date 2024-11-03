@@ -142,7 +142,7 @@
 		We used a sliding window approach with size of the window set as 20 such that each data point will be $D_i = \{(x_{i-20}, \dots, x_i), (t_{i-20}, \dots, t_i), y_i\}$ where $(x_{i-20}, \dots, x_i)$ was supplied to the GRU and $(t_{i-20}, \dots, t_i)$ was used by Neural ODE to model the dynamics of the hidden state. Previously mentioned Median Smoothing is applied to each datapoint and then the data is converted into batches with Dataset and Dataloader provided by PyTorch. We also used L2 Regularization to prevent overfitting.
 		\\
 		\footnotesize{We used a Mean Squared Error (MSE) as the loss function for our training and Root Mean Square Error (RMSE) along with other metrics as the evaluation metric.}
-		Our method achieved an average RMSE of \textbf{52.606754} on the test dataset.
+		Our method achieved an average RMSE of \textbf{49.272} on the test dataset.
 		
 		\begin{table}[h]
 		\centering
