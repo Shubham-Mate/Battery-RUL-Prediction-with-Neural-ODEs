@@ -17,21 +17,21 @@
 # 📍 Overview
 
 In this project, we developed a predictive model for estimating the Remaining Useful Life (RUL) of batteries using a combination of Neural ODE and Gated Recurrent Units (GRU). Accurate battery RUL predictions are essential for optimizing battery usage, ensuring safety, and minimizing maintenance costs, especially in critical applications such as electric vehicles and energy storage systems.
-  Problem Statement:
-    Predicting battery RUL involves estimating the time remaining before the battery's performance degrades below an acceptable threshold.
+### 1. Problem Statement:
+Predicting battery RUL involves estimating the time remaining before the battery's performance degrades below an acceptable threshold.
 
-### 1. Proposed Solution:
+### 2. Proposed Solution:
 The integration of Neural ODE into GRU-based architectures where the Neural ODE interpolates the hidden state between two time inputs. This approach leverages the strengths of ODEs in modeling continuous-time dynamics and GRUs in capturing temporal dependencies in time-series data. The hybrid model is designed to predict the complex and nonlinear degradation behavior of batteries.
 
-### 2. Model Architecture:
+### 3. Model Architecture:
  - GRU: Utilized to process sequential battery data and extract meaningful temporal features.
  - Neural ODE Component: Introduced to explicitly incorporate battery degradation dynamics by embedding differential equations into the GRU’s hidden states.
 
-### 3. Dataset and Preprocessing:
+### 4. Dataset and Preprocessing:
 Data was obtained from [this Kaggle Dataset](https://www.kaggle.com/datasets/ignaciovinuales/battery-remaining-useful-life-rul).
 Preprocessing steps, such as feature creation, normalization, and smoothing, were performed to ensure model robustness.
 
-### 4. Training and Evaluation:
+### 5. Training and Evaluation:
 The model was trained using a combination of supervised learning techniques and loss functions tailored for time-series regression.
 Evaluation metrics such as Mean Absolute Error (MAE), Root Mean Squared Error (RMSE) and R2 Score were used to assess performance.
 
