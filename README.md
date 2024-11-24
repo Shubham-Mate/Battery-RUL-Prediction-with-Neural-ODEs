@@ -1,7 +1,4 @@
-<p align="center"><h1 align="center">BATTERY-RUL-PREDICTION-WITH-NEURAL-ODES</h1></p>
-<p align="center">
-	<em><code>❯ REPLACE-ME</code></em>
-</p>
+<p align="center"><h1 align="center">Battery RUL Prediction with Neural ODE based GRU</h1></p>
 <p align="center">
 	<img src="https://img.shields.io/github/license/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs?style=default&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs?style=default&logo=git&logoColor=white&color=0080ff" alt="last-commit">
@@ -15,37 +12,37 @@
 </p>
 <br>
 
-## 🔗 Table of Contents
+---
 
-- [📍 Overview](#-overview)
-- [👾 Features](#-features)
-- [📁 Project Structure](#-project-structure)
-  - [📂 Project Index](#-project-index)
-- [🚀 Getting Started](#-getting-started)
-  - [☑️ Prerequisites](#-prerequisites)
-  - [⚙️ Installation](#-installation)
-  - [🤖 Usage](#🤖-usage)
-  - [🧪 Testing](#🧪-testing)
-- [📌 Project Roadmap](#-project-roadmap)
-- [🔰 Contributing](#-contributing)
-- [🎗 License](#-license)
-- [🙌 Acknowledgments](#-acknowledgments)
+# 📍 Overview
+
+In this project, we developed a predictive model for estimating the Remaining Useful Life (RUL) of batteries using a combination of Neural ODE and Gated Recurrent Units (GRU). Accurate battery RUL predictions are essential for optimizing battery usage, ensuring safety, and minimizing maintenance costs, especially in critical applications such as electric vehicles and energy storage systems.
+  Problem Statement:
+    Predicting battery RUL involves estimating the time remaining before the battery's performance degrades below an acceptable threshold.
+
+### 1. Proposed Solution:
+The integration of Neural ODE into GRU-based architectures where the Neural ODE interpolates the hidden state between two time inputs. This approach leverages the strengths of ODEs in modeling continuous-time dynamics and GRUs in capturing temporal dependencies in time-series data. The hybrid model is designed to predict the complex and nonlinear degradation behavior of batteries.
+
+### 2. Model Architecture:
+ - GRU: Utilized to process sequential battery data and extract meaningful temporal features.
+ - Neural ODE Component: Introduced to explicitly incorporate battery degradation dynamics by embedding differential equations into the GRU’s hidden states.
+
+### 3. Dataset and Preprocessing:
+Data was obtained from [this Kaggle Dataset](https://www.kaggle.com/datasets/ignaciovinuales/battery-remaining-useful-life-rul).
+Preprocessing steps, such as feature creation, normalization, and smoothing, were performed to ensure model robustness.
+
+### 4. Training and Evaluation:
+The model was trained using a combination of supervised learning techniques and loss functions tailored for time-series regression.
+Evaluation metrics such as Mean Absolute Error (MAE), Root Mean Squared Error (RMSE) and R2 Score were used to assess performance.
+
+### Conclusion:
+
+The ODE-based GRU framework represents a step forward in battery health management systems, offering scalable and accurate RUL predictions for modern energy solutions.
 
 ---
 
-## 📍 Overview
 
-<code>❯ REPLACE-ME</code>
-
----
-
-## 👾 Features
-
-<code>❯ REPLACE-ME</code>
-
----
-
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```sh
 └── Battery-RUL-Prediction-with-Neural-ODEs/
@@ -65,171 +62,11 @@
     └── util_functions.py
 ```
 
-
-### 📂 Project Index
-<details open>
-	<summary><b><code>BATTERY-RUL-PREDICTION-WITH-NEURAL-ODES/</code></b></summary>
-	<details> <!-- __root__ Submodule -->
-		<summary><b>__root__</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/blob/master/model.py'>model.py</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/blob/master/requirements.txt'>requirements.txt</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/blob/master/constants.py'>constants.py</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/blob/master/Neural ODE Experiments.ipynb'>Neural ODE Experiments.ipynb</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/blob/master/util_functions.py'>util_functions.py</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-	<details> <!-- report Submodule -->
-		<summary><b>report</b></summary>
-		<blockquote>
-			<table>
-			<tr>
-				<td><b><a href='https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/blob/master/report/Report.aux'>Report.aux</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			<tr>
-				<td><b><a href='https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/blob/master/report/Report.tex'>Report.tex</a></b></td>
-				<td><code>❯ REPLACE-ME</code></td>
-			</tr>
-			</table>
-		</blockquote>
-	</details>
-</details>
-
 ---
-## 🚀 Getting Started
+# 🙌 References
 
-### ☑️ Prerequisites
-
-Before getting started with Battery-RUL-Prediction-with-Neural-ODEs, ensure your runtime environment meets the following requirements:
-
-- **Programming Language:** Python
-- **Package Manager:** Pip
-
-
-### ⚙️ Installation
-
-Install Battery-RUL-Prediction-with-Neural-ODEs using one of the following methods:
-
-**Build from source:**
-
-1. Clone the Battery-RUL-Prediction-with-Neural-ODEs repository:
-```sh
-❯ git clone https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs
-```
-
-2. Navigate to the project directory:
-```sh
-❯ cd Battery-RUL-Prediction-with-Neural-ODEs
-```
-
-3. Install the project dependencies:
-
-
-**Using `pip`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Pip-3776AB.svg?style={badge_style}&logo=pypi&logoColor=white" />](https://pypi.org/project/pip/)
-
-```sh
-❯ pip install -r requirements.txt
-```
-
-
-
-
-### 🤖 Usage
-Run Battery-RUL-Prediction-with-Neural-ODEs using the following command:
-**Using `pip`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Pip-3776AB.svg?style={badge_style}&logo=pypi&logoColor=white" />](https://pypi.org/project/pip/)
-
-```sh
-❯ python {entrypoint}
-```
-
-
-### 🧪 Testing
-Run the test suite using the following command:
-**Using `pip`** &nbsp; [<img align="center" src="https://img.shields.io/badge/Pip-3776AB.svg?style={badge_style}&logo=pypi&logoColor=white" />](https://pypi.org/project/pip/)
-
-```sh
-❯ pytest
-```
-
-
----
-## 📌 Project Roadmap
-
-- [X] **`Task 1`**: <strike>Implement feature one.</strike>
-- [ ] **`Task 2`**: Implement feature two.
-- [ ] **`Task 3`**: Implement feature three.
-
----
-
-## 🔰 Contributing
-
-- **💬 [Join the Discussions](https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/discussions)**: Share your insights, provide feedback, or ask questions.
-- **🐛 [Report Issues](https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/issues)**: Submit bugs found or log feature requests for the `Battery-RUL-Prediction-with-Neural-ODEs` project.
-- **💡 [Submit Pull Requests](https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
-
-<details closed>
-<summary>Contributing Guidelines</summary>
-
-1. **Fork the Repository**: Start by forking the project repository to your github account.
-2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
-   ```sh
-   git clone https://github.com/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs
-   ```
-3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
-   ```sh
-   git checkout -b new-feature-x
-   ```
-4. **Make Your Changes**: Develop and test your changes locally.
-5. **Commit Your Changes**: Commit with a clear message describing your updates.
-   ```sh
-   git commit -m 'Implemented new feature x.'
-   ```
-6. **Push to github**: Push the changes to your forked repository.
-   ```sh
-   git push origin new-feature-x
-   ```
-7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
-8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
-</details>
-
-<details closed>
-<summary>Contributor Graph</summary>
-<br>
-<p align="left">
-   <a href="https://github.com{/Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs/}graphs/contributors">
-      <img src="https://contrib.rocks/image?repo=Shubham-Mate/Battery-RUL-Prediction-with-Neural-ODEs">
-   </a>
-</p>
-</details>
-
----
-
-## 🎗 License
-
-This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
-
----
-
-## 🙌 Acknowledgments
-
-- List any resources, contributors, inspiration, etc. here.
+The papers which were reviewed for this project were:
+- [Neural Ordinary Differential Equations (Ricky T. Q. Chen, Yulia Rubanova, Jesse Bettencourt, David Duvenaud)](https://arxiv.org/abs/1806.07366)
+- [Neural Ordinary Differential Equation based Recurrent Neural Network Model (Mansura Habiba, Barak A. Pearlmutter)](https://arxiv.org/abs/2005.09807)
 
 ---
